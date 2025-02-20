@@ -33,6 +33,10 @@ cd backend
 python3 manage.py startapp base
 ```
 
+```py
+pip install -r requirements.txt
+```
+this is for requirements.txt
 # setting up the settings file 
 
 - configure INSTALLED_APPS
