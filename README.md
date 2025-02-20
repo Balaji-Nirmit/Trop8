@@ -1,6 +1,6 @@
-# Django-React
- staring with the project we need to create a virtual environment 
- ```bash
+
+staring with the project we need to create a virtual environment 
+```bash
 python3 -m venv env
 ```
 this will create a virtual environment folder env
@@ -13,120 +13,38 @@ and for windows
 env/Scripts/activate.bat
 ```
 
-this is the requirement.txt file
-```
-asgiref
-Django
-django-cors-headers
-djangorestframework
-djangorestframework-simplejwt
-PyJWT
-pytz
-sqlparse
-psycopg2-binary
-python-dotenv
-```
-django-cors-headers to fix cross origin request issues
+# setting up the backend
 
 ```bash
-pip install -r requirement.txt
+pip3 install django
 ```
-+ for tutorial only following changes are made in settings.py of project folder
-```py
-from pathlib import Path
-from datetime import timedelta
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
-
-ALLOWED_HOSTS = ["*"]
-
-# for jwt tokens
-
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
-}
-
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-}
-
-INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "api",
-    "rest_framework",
-    "corsheaders",
-]
-
-MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
-]
-
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWS_CREDENTIALS = True
-```
-how jwt tokens work
-+ json web token
-+ act as permission or authentication
-+ when frontend interacts with backend, the backend needs to know who we are and do we have permission to do
-+ the token is decode in backend to grant the permissions
-+ credentials passed from frontend to backend and grant the token (access token and refresh token)  from the backend
-+ what access token will do is that it grant the request and refresh token refreshes the access token
-+ frontend will store both tokens so in future we don't have to constantly sign in in the backend
-+ when the access token expires then refresh token is sent to backend to again respawn the access token
-+ we do this for security if the access token is leaked
-
-
-<hr>
-first we make models and then its serializable class 
-after then views are made
-
-+ now in views there are two thing ListCreateApiView and CreateApiView
-+ then difference is that first one lists as well as create data point but later one only creates the data point
-+ in view methods like get_queryset, perform_create are inbuilt methods which we are overwritting for our specific use cases
-
-# Frontend part
 ```bash
- npm install axios react-router-dom jwt-decode
+pip3 install djangorestframework
 ```
-make following folder in src
-+ components
-+ pages
-+ assets
-+ styles
-  
-make 3 files in the src folder
-+ constants.js
-+ api.js
-+ .env
 
---- make ProtectedRoute.jsx in components folder of src
+```bash
+pip3 install django-cors-headers
+```
+
+```
+django-admin startproject backend
+cd backend
+python3 manage.py startapp base
+```
+
+# setting up the settings file 
+
+- configure INSTALLED_APPS
+- MIDDLEWARE 
+- CORS_ALLOWED_ORIGIN
+- CORS ALLOW CREDENTIALS
+- MEDIA_URL
+- MEDIA ROOT
 
 
+add a urls.py in base folder and then include it in the urls.py file of the backend folder
 
-
-
-
-<hr>
 
 ```bash
 npm create vite@latest
