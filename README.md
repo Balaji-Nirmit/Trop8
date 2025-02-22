@@ -1,16 +1,16 @@
 
 staring with the project we need to create a virtual environment 
 ```bash
-python3 -m venv env
+python3 -m venv venv
 ```
 this will create a virtual environment folder env
 ```bash
-source env/bin/activate
+source venv/bin/activate
 ```
 this to activate virtual environment in mac 
 and for windows
 ```bash
-env/Scripts/activate.bat
+evnv/Scripts/Activate
 ```
 
 # setting up the backend
