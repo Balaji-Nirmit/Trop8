@@ -10,7 +10,7 @@ source venv/bin/activate
 this to activate virtual environment in mac 
 and for windows
 ```bash
-evnv/Scripts/Activate
+vevn/Scripts/Activate
 ```
 
 # setting up the backend
